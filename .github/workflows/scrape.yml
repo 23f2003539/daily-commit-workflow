@@ -1,4 +1,4 @@
-name: Scrape Table Sums
+name: Scrape Table Sums 
 
 on:
   push:                    # Runs every time you push code
