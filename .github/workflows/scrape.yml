@@ -1,0 +1,72 @@
+name: Scrape Table Sums
+
+on:
+  push:                    # Runs every time you push code
+  workflow_dispatch:       # Also lets you run it manually
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: 23f2003539@ds.study.iitm.ac.in - Run Playwright scraper
+        run: node scrape.js
+```
+
+> ⚠️ **Important:** The step name `23f2003539@ds.study.iitm.ac.in - Run Playwright scraper` contains your email — this is **required** by the assignment so the grader can find it.
+
+Click **"Commit new file"**.
+
+---
+
+## STEP 6: Watch Your Action Run
+
+1. In your repo, click the **"Actions"** tab at the top.
+2. You should see a workflow run triggered by your commit. Click it.
+3. Click into the **"scrape"** job, then expand the step with your email in the name.
+4. You'll see output like:
+```
+   Sum for https://...seed=25: 12345.67
+   ...
+   Total sum across all pages: 99999.99
+```
+
+If it's not running, click **"Run workflow"** → **"Run workflow"** (green button).
+
+---
+
+## STEP 7: Create a GitHub Personal Access Token (PAT)
+
+The assignment needs your repo URL + a token so it can read your Action logs.
+
+1. Go to [github.com/settings/tokens](https://github.com/settings/tokens)
+2. Click **"Generate new token" → "Generate new token (classic)"**
+3. Give it a name like `TDS Assignment`
+4. Set expiration to **30 days**
+5. Under **Scopes**, check:
+   - ✅ `repo` (full control of private repositories)
+   - ✅ `workflow`
+6. Click **"Generate token"**
+7. **Copy the token immediately** — you won't see it again!
+
+---
+
+## STEP 8: Submit Your Answer
+
+Your answer format should be:
+```
+https://github.com/YOUR_USERNAME/playwright-scraper ghp_xxxxxxxxxxxxxxxxxxxx
